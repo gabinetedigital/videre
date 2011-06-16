@@ -22,7 +22,8 @@ from models import Video
 
 def video(request, vid):
     obj = get_object_or_404(Video, pk=vid)
-    return HttpResponse(dumps({
+    callback = request.REQUEST.get('callback')
+    dump = dumps({
         'id': obj.id,
         'title': obj.title,
         'summary': obj.summary,
@@ -35,4 +36,7 @@ def video(request, vid):
             'url': i.url,
             'content_type': i.content_type,
             } for i in obj.url_set.all()],
-    }))
+    })
+    content = callback and '%s(%s);' % (callback, dump) or dump
+    mimetype = callback and 'text/javascript' or 'application/json'
+    return HttpResponse(content, mimetype=mimetype)
