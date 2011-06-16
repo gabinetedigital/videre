@@ -36,7 +36,6 @@ avl.player = (function () {
             for (var i = 0; i < this.sources.length; i++) {
                 if (this.sources[i].content_type === 'video/x-flv') {
                     flv = this.sources[i].url;
-                    break;
                 }
 
                 var attrs = {
