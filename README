@@ -1,0 +1,12 @@
+Welcome to the AVL video platform
+=================================
+
+So, this project is a simple django project that indexes uploaded videos
+and, in a near future, will convert videos to some of the most common
+formats, like ogv, webm and flv.
+
+This project also provide a very simple to use javascript API that
+allows people to embed videos managed by an instance of this software in
+any other website.
+
+I'll add more info here soon, I promisse!
