@@ -21,9 +21,13 @@ from django.utils.simplejson import dumps
 from django.http import HttpResponse
 from models import Video
 
+
 def video(request, vid):
+    """ Returns video data """
+
     obj = get_object_or_404(Video, pk=vid)
     callback = request.REQUEST.get('callback')
+
     dump = dumps({
         'id': obj.id,
         'title': obj.title,
@@ -32,14 +36,16 @@ def video(request, vid):
         'license_name': obj.license_name,
         'license_link': obj.license_link,
         'thumb_url': obj.thumb_url,
-        'tags': [i.name for i in obj.tags.all()],
+        'tags': list(obj.tags.values_list('name', flat=True)),
         'sources': [{
             'url': i.url,
             'content_type': i.content_type,
             } for i in obj.url_set.all()],
     })
-    content = callback and '%s(%s);' % (callback, dump) or dump
-    mimetype = callback and 'text/javascript' or 'application/json'
+
+    content = '%s(%s);' % (callback, dump) if callback else dump
+    mimetype = 'text/javascript' if callback else 'application/json'
+
     return HttpResponse(content, mimetype=mimetype)
 
 

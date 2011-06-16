@@ -17,29 +17,34 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 from django.db import models
+from django.utils.translation import ugettext_lazy as _
+
 
 class Tag(models.Model):
-    name = models.CharField(max_length=300)
+    name = models.CharField(_(u'name'), max_length=300)
 
     def __unicode__(self):
         return self.name
 
+
 class Url(models.Model):
-    url = models.CharField(max_length=300)
-    content_type = models.CharField(max_length=128)
-    video = models.ForeignKey('Video')
+    url = models.CharField(_(u'url'), max_length=300)
+    content_type = models.CharField(_(u'content type'), max_length=128)
+    video = models.ForeignKey('Video', verbose_name=_(u'video'))
 
     def __unicode__(self):
         return self.url
 
+
 class Video(models.Model):
-    title = models.CharField(max_length=200)
-    summary = models.TextField()
-    author = models.CharField(max_length=200)
-    license_name = models.CharField(max_length=200)
-    license_link = models.CharField(max_length=300)
-    thumb_url = models.CharField(max_length=300, blank=True)
-    tags = models.ManyToManyField(Tag)
+    title = models.CharField(_(u'title'), max_length=200)
+    summary = models.TextField(_(u'summary'),)
+    author = models.CharField(_(u'author'), max_length=200)
+    video_file = models.FileField(_(u'video file'), upload_to='static/videos')
+    license_name = models.CharField(_(u'license name'), max_length=200)
+    license_link = models.CharField(_(u'license link'), max_length=300)
+    thumb_url = models.CharField(_(u'thumb url'), max_length=300, blank=True)
+    tags = models.ManyToManyField('Tag', verbose_name=_(u'tags'),)
 
     def __unicode__(self):
         return self.title
