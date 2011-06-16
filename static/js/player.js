@@ -59,8 +59,8 @@ avl.player = (function () {
                 $f(uid, "http://releases.flowplayer.org/swf/flowplayer-3.2.7.swf", {
                     clip: {
                         url: flv,
-                        autoPlay: true,
-                    },
+                        autoPlay: true
+                    }
                 });
             }
         }
