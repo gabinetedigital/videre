@@ -3,13 +3,11 @@ from django.contrib import admin
 admin.autodiscover()
 
 urlpatterns = patterns('',
-    # Examples:
-    # url(r'^$', 'video.views.home', name='home'),
-    # url(r'^video/', include('video.foo.urls')),
-
-    # Uncomment the admin/doc line below to enable admin documentation:
-    # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
-
-    # Uncomment the next line to enable the admin:
+    url(r'^', include('videos.urls')),
     url(r'^admin/', include(admin.site.urls)),
+
+    # static media
+    url(r'^s/(.*)', 'django.views.static.serve',
+        {'document_root': 'static'},
+        name='static'),
 )
