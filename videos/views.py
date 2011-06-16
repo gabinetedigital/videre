@@ -15,7 +15,8 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404, render_to_response
+from django.core.urlresolvers import reverse
 from django.utils.simplejson import dumps
 from django.http import HttpResponse
 from models import Video
@@ -40,3 +41,8 @@ def video(request, vid):
     content = callback and '%s(%s);' % (callback, dump) or dump
     mimetype = callback and 'text/javascript' or 'application/json'
     return HttpResponse(content, mimetype=mimetype)
+
+
+def embed(request, vid):
+    url = request.build_absolute_uri(reverse('static', args=('',)))
+    return render_to_response('embed.html', {'url': url})
