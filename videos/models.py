@@ -20,6 +20,9 @@ from django.db import models
 class Tag(models.Model):
     name = models.CharField(max_length=300)
 
+    def __unicode__(self):
+        return self.name
+
 class Url(models.Model):
     url = models.CharField(max_length=300)
     content_type = models.CharField(max_length=128)
