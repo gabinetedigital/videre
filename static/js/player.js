@@ -45,7 +45,7 @@ avl.player = (function () {
                 $video.append($('<source>').attr(attrs));
             }
 
-            $video.css({width: this.width, height: this.height});
+            $video.attr({width: this.width, height: this.height});
             $video.addClass('video-js');
             $video
                 .append($('<div>').attr('id', uid))
