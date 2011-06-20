@@ -16,20 +16,24 @@
 
 avl = window.avl || {};
 avl.player = (function () {
-    function Video (element, opts) {
+    function Player (element, opts) {
         opts = opts || {};
-        this.$element = $(element);
-        this.$element.css({width: this.width, height: this.height});
-        this.$element.addClass('video-js-box');
-
         this.sources = opts.sources;
         this.width = opts.width || 480;
         this.height = opts.height || 270;
-        this.setup();
+
+        /* Configuring the target element */
+        this.$element = $(element);
+        this.$element.addClass('video-js-box');
+        this.$element.append(this.player());
+
+        /* Setting up video js in the just added player. It will not
+         * until we add it to the dom structure */
+        VideoJS.setup($('video', this.$element)[0]);
     }
 
-    Video.prototype = {
-        setup: function () {
+    Player.prototype = {
+        player: function () {
             var $video = $('<video>');
             var uid = 'player-' + (new Date()).getTime();
             var flv = null;
@@ -47,12 +51,7 @@ avl.player = (function () {
 
             $video.attr({width: this.width, height: this.height});
             $video.addClass('video-js');
-            $video
-                .append($('<div>').attr('id', uid))
-                .appendTo(this.$element);
-
-            /* External library */
-            VideoJS.setup($video[0]);
+            $video.append($('<div>').attr('id', uid))
 
             /* We need to setup flash too */
             if (flv != null) {
@@ -63,8 +62,10 @@ avl.player = (function () {
                     }
                 });
             }
+
+            return $video;
         }
     };
 
-    return function (e, o) { return new Video(e, o); };
+    return function (e, o) { return new Player(e, o); };
 })();
