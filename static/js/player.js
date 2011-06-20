@@ -25,11 +25,9 @@ avl.player = (function () {
         /* Configuring the target element */
         this.$element = $(element);
         this.$element.addClass('video-js-box');
-        this.$element.append(this.player());
 
-        /* Setting up video js in the just added player. It will not
-         * until we add it to the dom structure */
-        VideoJS.setup($('video', this.$element)[0]);
+        /* Let's build the player */
+        this.player();
     }
 
     Player.prototype = {
@@ -51,7 +49,12 @@ avl.player = (function () {
 
             $video.attr({width: this.width, height: this.height});
             $video.addClass('video-js');
-            $video.append($('<div>').attr('id', uid))
+            $video.append($('<div>').attr('id', uid));
+            $video.appendTo(this.$element);
+
+            /* Setting up video js in the just added player. It will not
+             * until we add it to the dom structure */
+            VideoJS.setup($('video', this.$element)[0]);
 
             /* We need to setup flash too */
             if (flv != null) {
@@ -62,7 +65,6 @@ avl.player = (function () {
                     }
                 });
             }
-
             return $video;
         }
     };
