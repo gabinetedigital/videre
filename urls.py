@@ -4,7 +4,7 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
     url(r'^', include('videos.urls')),
-    url(r'^admin/', include(admin.site.urls)),
+    url(r'^', include(admin.site.urls)),
 
     # static media
     url(r'^s/(.*)', 'django.views.static.serve',
