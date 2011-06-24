@@ -14,8 +14,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-avl = window.avl || {};
-avl.player = (function () {
+avl.extend('player', function (e, o) {
     function Player (element, opts) {
         opts = opts || {};
         this.sources = opts.sources;
@@ -108,5 +107,5 @@ avl.player = (function () {
         }
     };
 
-    return function (e, o) { return new Player(e, o); };
-})();
+    new Player(e, o);
+});

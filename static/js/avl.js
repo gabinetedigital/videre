@@ -1,4 +1,5 @@
-/* Copyright (C) 2011  Lincoln de Sousa <lincoln@comum.org>
+/* Copyright (C) 2011  Governo do Estado do Rio Grande do Sul
+ * Copyright (C) 2011  Lincoln de Sousa <lincoln@comum.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -14,9 +15,20 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-avl.extend('loader', function (element, opts) {
-    $.getJSON(this.api_url + '/' + opts.vid + '/?callback=?', function (video) {
-        opts.sources = video.sources;
-        avl.player(element, opts);
-    });
-});
+var avl = (function () {
+    function Avl() {
+        this.api_url = null;
+    }
+
+    Avl.prototype = {
+        init: function (api_url) {
+            this.api_url = api_url;
+        },
+
+        extend: function (name, plugin) {
+            this[name] = plugin;
+        }
+    };
+
+    return new Avl();
+})();

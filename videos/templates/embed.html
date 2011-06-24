@@ -7,9 +7,11 @@
     <script type="text/javascript" src="{{ url }}js/l/flowplayer.js"></script>
     <script type="text/javascript" src="{{ url }}js/l/video.js"></script>
     <script type="text/javascript" src="{{ url }}js/l/jquery.js"></script>
+    <script type="text/javascript" src="{{ url }}js/avl.js"></script>
     <script type="text/javascript" src="{{ url }}js/player.js"></script>
     <script type="text/javascript" src="{{ url }}js/loader.js"></script>
     <script type="text/javascript">
+      avl.init("{{ api }}");
       avl.loader('#player', {vid: {{ vid }}, width: {{ width }}, height: {{ height }}});
     </script>
   </body>

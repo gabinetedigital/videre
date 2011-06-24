@@ -45,8 +45,10 @@ def video(request, vid):
 
 def embed(request, vid):
     url = request.build_absolute_uri(reverse('static', args=('',)))
+    api = request.build_absolute_uri(request.META['SCRIPT_NAME'] + '/api')
     ctx = {
         'url': url,
+        'api': api,
         'vid': vid,
         'width': request.GET.get('width', 480),
         'height': request.GET.get('height', 270),
