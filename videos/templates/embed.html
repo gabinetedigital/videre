@@ -11,10 +11,9 @@
     <script type="text/javascript" src="{{ STATIC_URL }}js/l/jquery.js"></script>
     <script type="text/javascript" src="{{ STATIC_URL }}js/avl.js"></script>
     <script type="text/javascript" src="{{ STATIC_URL }}js/player.js"></script>
-    <script type="text/javascript" src="{{ STATIC_URL }}js/loader.js"></script>
     <script type="text/javascript">
       avl.init("{{ api }}");
-      avl.loader('#player', {vid: {{ vid }}, width: {{ width }}, height: {{ height }}});
+      avl.player('#player', {vid: {{ vid }}, width: {{ width }}, height: {{ height }}});
     </script>
   </body>
 </html>

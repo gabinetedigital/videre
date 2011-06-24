@@ -107,5 +107,8 @@ avl.extend('player', function (e, o) {
         }
     };
 
-    new Player(e, o);
+    $.getJSON(this.api_url + '/' + o.vid + '/?callback=?', function (video) {
+        o.sources = video.sources;
+        new Player(e, o);
+    });
 });
