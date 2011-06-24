@@ -22,13 +22,9 @@ from django.http import HttpResponse
 from models import Video
 
 
-def video(request, vid):
-    """ Returns video data """
-
-    obj = get_object_or_404(Video, pk=vid)
-    callback = request.REQUEST.get('callback')
-
-    dump = dumps({
+def video_dict(obj):
+    """ Returns a dictionary representation of a video object """
+    return {
         'id': obj.id,
         'title': obj.title,
         'summary': obj.summary,
@@ -41,15 +37,42 @@ def video(request, vid):
             'url': i.url,
             'content_type': i.content_type,
             } for i in obj.url_set.all()],
-    })
+    }
 
+
+def build_json(request, obj):
+    """ Returns an HttpResponse object containing a json data
+
+    If we have the `callback' key present in request, it also prepares
+    the response to return JSONP. """
+    dump = dumps(obj)
+    callback = request.REQUEST.get('callback')
     content = '%s(%s);' % (callback, dump) if callback else dump
     mimetype = 'text/javascript' if callback else 'application/json'
-
     return HttpResponse(content, mimetype=mimetype)
 
 
+def video(request, vid):
+    """ Returns video data """
+    obj = get_object_or_404(Video, pk=vid)
+    return build_json(request, video_dict(obj))
+
+
+def collection(request, tags=None):
+    """ Returns a list of videos, filtered by tag names """
+    query = {}
+    if tags is not None:
+        query.update({tags__name__in: tags})
+    videos = [video_dict(i) for i in Video.objects.filter(**query)]
+    return build_json(request, videos)
+
+
 def embed(request, vid):
+    """ Returns an html page that renders a player
+
+    It's useful for embeding the video in other pages that you're not
+    able to change the html code or add javascript. It also recognizes
+    both `width' and `height' variables present in request. """
     api = request.build_absolute_uri(request.META['SCRIPT_NAME'] + '/api')
     ctx = {
         'api': api,
