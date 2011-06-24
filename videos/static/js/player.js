@@ -14,29 +14,33 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-avl = window.avl || {};
-avl.player = (function () {
-    function Video (element, opts) {
+avl.extend('player', function (e, o) {
+    function Player (element, opts) {
         opts = opts || {};
-        this.$element = $(element);
-        this.$element.css({width: this.width, height: this.height});
-        this.$element.addClass('video-js-box');
-
         this.sources = opts.sources;
         this.width = opts.width || 480;
         this.height = opts.height || 270;
-        this.setup();
+
+        /* Configuring the target element */
+        this.$element = $(element);
+        this.$element.addClass('video-js-box');
+
+        /* Let's build the player */
+        this.player();
     }
 
-    Video.prototype = {
-        setup: function () {
+    Player.prototype = {
+        player: function () {
             var $video = $('<video>');
             var uid = 'player-' + (new Date()).getTime();
             var flv = null;
+            var rtmp = false;
             for (var i = 0; i < this.sources.length; i++) {
                 if (this.sources[i].content_type === 'video/x-flv') {
                     flv = this.sources[i].url;
-                    break;
+                    if (this.sources[i].url.substr(0, 4) === 'rtmp') {
+                        rtmp = true;
+                    }
                 }
 
                 var attrs = {
@@ -46,26 +50,62 @@ avl.player = (function () {
                 $video.append($('<source>').attr(attrs));
             }
 
-            $video.css({width: this.width, height: this.height});
-            $video.addClass('video-js');
-            $video
-                .append($('<div>').attr('id', uid))
-                .appendTo(this.$element);
+            var $playerContainer = $('<div>').attr('id', uid);
 
-            /* External library */
-            VideoJS.setup($video[0]);
+            /* There's only one source, a flash one. So, we'll not setup
+             * the video tag :( */
+            if (this.sources.length === 1 && flv) {
+                $playerContainer.appendTo(this.$element);
+                $playerContainer.css({width: this.width, height: this.height});
+            } else {
+                $video.attr({width: this.width, height: this.height});
+                $video.addClass('video-js');
+                $video.append($playerContainer);
+                $video.appendTo(this.$element);
+            }
+
+            /* Setting up video js in the just added player. It will not
+             * until we add it to the dom structure */
+            VideoJS.setup($('video', this.$element)[0]);
 
             /* We need to setup flash too */
             if (flv != null) {
-                $f(uid, "http://releases.flowplayer.org/swf/flowplayer-3.2.7.swf", {
+                var cfg = {
                     clip: {
                         url: flv,
-                        autoPlay: true,
-                    },
-                });
+                        autoPlay: true
+                    }
+                };
+
+                /* We also need to support flash streaming */
+                if (rtmp) {
+
+                    /* Handling requests in all styles, including akamai
+                     * ones.
+                     *
+                     * Don't know why they just don't use another
+                     * mimetype once they're not actually providing flv
+                     * content in the first request... */
+                    var result = /^(.+)\/([^\/]+)$/.exec(flv);
+                    var netConnectionUrl = result[1];
+                    var clipUrl = result[0]
+
+                    cfg.clip.url = clipUrl;
+                    cfg.clip.live = true;
+                    cfg.clip.provider = 'influxis';
+                    cfg.plugins = {
+                        influxis: {
+                            url: 'http://releases.flowplayer.org/swf/flowplayer.rtmp-3.2.3.swf',
+                            netConnectionUrl: netConnectionUrl
+                        }
+                    };
+                }
+
+                $f(uid, "http://releases.flowplayer.org/swf/flowplayer-3.2.7.swf", cfg);
             }
+            return $video;
         }
     };
 
-    return function (e, o) { return new Video(e, o); };
-})();
+    new Player(e, o);
+});
