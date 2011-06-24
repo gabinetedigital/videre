@@ -8,7 +8,6 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
     url(r'^', include('videos.urls')),
-    url(r'^', include(admin.site.urls)),
 )
 
 if 'debug_toolbar_htmltidy' in settings.INSTALLED_APPS:
@@ -16,4 +15,10 @@ if 'debug_toolbar_htmltidy' in settings.INSTALLED_APPS:
         url(r'^', include('debug_toolbar_htmltidy.urls')),
     )
 
+# Static files
 urlpatterns += staticfiles_urlpatterns()
+
+# Admin entry must be the last one
+urlpatterns += patterns('',
+    url(r'^', include(admin.site.urls)),
+)
