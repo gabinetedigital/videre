@@ -2,7 +2,8 @@
 
 import os
 
-PROJECT_DIR = os.path.dirname(__file__)
+PROJECT_DIR = lambda *x: os.path.abspath(
+    os.path.join(os.path.dirname(__file__), *x))
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -16,7 +17,7 @@ MANAGERS = ADMINS
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(PROJECT_DIR, 'database.db'),
+        'NAME': PROJECT_DIR('database.db'),
         'USER': '',
         'PASSWORD': '',
         'HOST': '',
@@ -49,7 +50,7 @@ USE_L10N = True
 
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/home/media/media.lawrence.com/media/"
-MEDIA_ROOT = os.path.join(PROJECT_DIR, 'media')
+MEDIA_ROOT = PROJECT_DIR('media')
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
@@ -60,7 +61,7 @@ MEDIA_URL = '/media/'
 # Don't put anything in this directory yourself; store your static files
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
 # Example: "/home/media/media.lawrence.com/static/"
-STATIC_ROOT = os.path.join(PROJECT_DIR, 'public')
+STATIC_ROOT = PROJECT_DIR('public')
 
 # URL prefix for static files.
 # Example: "http://media.lawrence.com/static/"
@@ -110,7 +111,7 @@ TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
-    os.path.join(PROJECT_DIR, 'templates'),
+    PROJECT_DIR('templates'),
 )
 
 INSTALLED_APPS = (
@@ -150,6 +151,6 @@ LOGGING = {
 }
 
 # Arquivo para ambiente de testes (desenvolvimento)
-local_settings = os.path.join(PROJECT_DIR, 'local_settings.py')
+local_settings = PROJECT_DIR('local_settings.py')
 if os.path.isfile(local_settings) and DEBUG:
     execfile(local_settings)
