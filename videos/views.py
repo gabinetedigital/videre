@@ -45,4 +45,10 @@ def video(request, vid):
 
 def embed(request, vid):
     url = request.build_absolute_uri(reverse('static', args=('',)))
-    return render_to_response('embed.html', {'url': url, 'vid': vid})
+    ctx = {
+        'url': url,
+        'vid': vid,
+        'width': request.GET.get('width', 480),
+        'height': request.GET.get('height', 270),
+    }
+    return render_to_response('embed.html', ctx)
