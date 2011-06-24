@@ -40,7 +40,6 @@ class Video(models.Model):
     title = models.CharField(_(u'title'), max_length=200)
     summary = models.TextField(_(u'summary'),)
     author = models.CharField(_(u'author'), max_length=200)
-    video_file = models.FileField(_(u'video file'), upload_to='static/videos')
     license_name = models.CharField(_(u'license name'), max_length=200)
     license_link = models.CharField(_(u'license link'), max_length=300)
     thumb_url = models.CharField(_(u'thumb url'), max_length=300, blank=True)
