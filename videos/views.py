@@ -61,8 +61,8 @@ def video(request, vid):
 def collection(request, tags=None):
     """ Returns a list of videos, filtered by tag names """
     query = {}
-    if tags is not None:
-        query.update({tags__name__in: tags})
+    if tags:
+        query.update({tags__name__in: tags.split(',')})
     videos = [video_dict(i) for i in Video.objects.filter(**query)]
     return build_json(request, videos)
 
