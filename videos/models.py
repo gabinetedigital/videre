@@ -16,9 +16,9 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+from datetime import datetime
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
-
 
 class Tag(models.Model):
     name = models.CharField(_(u'name'), max_length=300)
@@ -38,6 +38,9 @@ class Url(models.Model):
 
 class Video(models.Model):
     title = models.CharField(_(u'title'), max_length=200)
+    creation_date = models.DateTimeField(
+        _(u'creation date'), default=datetime.now)
+    event_date = models.DateTimeField(_(u'event date'))
     summary = models.TextField(_(u'summary'),)
     author = models.CharField(_(u'author'), max_length=200)
     license_name = models.CharField(_(u'license name'), max_length=200)
@@ -50,9 +53,12 @@ class Video(models.Model):
 
     def as_dict(self):
         """ Returns a dictionary representation of a video object """
+        date_handler = lambda x: getattr(x, 'isoformat', lambda:None)()
         return {
             'id': self.id,
             'title': self.title,
+            'creation_date': date_handler(self.creation_date),
+            'event_date': date_handler(self.event_date),
             'summary': self.summary,
             'author': self.author,
             'license_name': self.license_name,

@@ -1,0 +1,28 @@
+=========
+UPGRADING
+=========
+
+Intro
+~~~~~
+
+This document describes how to upgrade our platform from one version to
+another. It shows specific details that are out of the tarball/git
+update workflow.
+
+v0.1 -> v0.2
+~~~~~~~~~~~~
+ * You have to manually add two new columns in the videos_video
+   table. Just like this::
+
+     $ python manage.py dbshell
+     >>> ALTER TABLE videos_video ADD COLUMN "creation_date" datetime NOT NULL DEFAULT now();
+     >>> ALTER TABLE videos_video ADD COLUMN "event_date" datetime NOT NULL DEFAULT now();
+
+   The example above is based on the mysql backend. If you're using
+   sqlite for example, you'll need to create the column with some fake
+   data and then update it with the value returned by `datetime()', just
+   like this::
+
+     >>> ALTER TABLE videos_video ADD COLUMN "creation_date" datetime NOT NULL;
+     >>> UPDATE videos_video SET creation_date = datetime();
+
