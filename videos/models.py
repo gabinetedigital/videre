@@ -47,3 +47,20 @@ class Video(models.Model):
 
     def __unicode__(self):
         return self.title
+
+    def as_dict(self):
+        """ Returns a dictionary representation of a video object """
+        return {
+            'id': self.id,
+            'title': self.title,
+            'summary': self.summary,
+            'author': self.author,
+            'license_name': self.license_name,
+            'license_link': self.license_link,
+            'thumb_url': self.thumb_url,
+            'tags': list(self.tags.values_list('name', flat=True)),
+            'sources': [{
+                    'url': i.url,
+                    'content_type': i.content_type,
+                    } for i in self.url_set.all()],
+        }

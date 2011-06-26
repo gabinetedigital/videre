@@ -22,24 +22,6 @@ from django.http import HttpResponse
 from models import Video
 
 
-def video_dict(obj):
-    """ Returns a dictionary representation of a video object """
-    return {
-        'id': obj.id,
-        'title': obj.title,
-        'summary': obj.summary,
-        'author': obj.author,
-        'license_name': obj.license_name,
-        'license_link': obj.license_link,
-        'thumb_url': obj.thumb_url,
-        'tags': list(obj.tags.values_list('name', flat=True)),
-        'sources': [{
-            'url': i.url,
-            'content_type': i.content_type,
-            } for i in obj.url_set.all()],
-    }
-
-
 def build_json(request, obj):
     """ Returns an HttpResponse object containing a json data
 
@@ -55,7 +37,7 @@ def build_json(request, obj):
 def video(request, vid):
     """ Returns video data """
     obj = get_object_or_404(Video, pk=vid)
-    return build_json(request, video_dict(obj))
+    return build_json(request, obj.as_dict())
 
 
 def collection(request, tags=None):
@@ -63,7 +45,7 @@ def collection(request, tags=None):
     query = {}
     if tags:
         query.update({tags__name__in: tags.split(',')})
-    videos = [video_dict(i) for i in Video.objects.filter(**query)]
+    videos = [i.as_dict() for i in Video.objects.filter(**query)]
     return build_json(request, videos)
 
 
