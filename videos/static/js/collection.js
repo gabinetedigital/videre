@@ -30,14 +30,14 @@ avl.extend('collection', function (e, o) {
         this.opts = opts || {};
 
         /* Callback fired when clicking a video */
-        if (typeof opts.videoCallback === 'function')
-            this.videoCallback = opts.videoCallback;
-        else
-            this.videoCallback = function (vid, vurl) {
-                
-            }
+        this.videoCallback = typeof opts.videoCallback === 'function' ?
+            opts.videoCallback : function (obj) { };
 
+        /* List of items to be shown */
         this.items = opts.items;
+
+        /* Visual stuff: first, we get the element that will be the
+         * targed of our collection rendering and then we render it! */
         this.$element = $(element);
         this.render();
     }
@@ -66,7 +66,7 @@ avl.extend('collection', function (e, o) {
 
             var hour = dateObj.getHours() + ':' + dateObj.getMinutes();
 
-            return $(avl.tmpl(thumbTemplate, {
+            var $li = $(avl.tmpl(thumbTemplate, {
                 'link': '#' + video.id,
                 'thumb_url': video.thumb_url,
                 'title': video.title,
@@ -74,12 +74,18 @@ avl.extend('collection', function (e, o) {
                 'date': date,
                 'hour': hour
             }));
+
+            var context = this;
+            $('a', $li).click(function (evt) {
+                context.opts.videoCallback(evt, video);
+            });
+            return $li;
         }
     };
 
-    $.getJSON(this.api_url + '/?callback=?', o, function (collection) {
-        o = o || {};
-        o.items = collection;
-        new Collection(e, o);
+    $.getJSON(this.api_url + '/?callback=?', function (collection) {
+        var opts = o || {};
+        opts.items = collection;
+        new Collection(e, opts);
     });
 });

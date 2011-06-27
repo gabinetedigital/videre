@@ -12,7 +12,11 @@
     <script type="text/javascript" src="{{ STATIC_URL }}js/collection.js"></script>
     <script type="text/javascript">
       avl.init("{{ api }}");
-      avl.collection('#collection');
+      avl.collection('#collection', {
+          videoCallback: function (event, obj) {
+              alert(obj.id);
+          }
+      });
     </script>
   </body>
 </html>
