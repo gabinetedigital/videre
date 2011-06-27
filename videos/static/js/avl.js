@@ -32,3 +32,37 @@ var avl = (function () {
 
     return new Avl();
 })();
+
+/* Our micro javascript library :) */
+
+/** This small function just replaces { var } ocorrences by the `var'
+ * value present in the `context' object.
+ *
+ * @param {String} content is the string that will have the `variables'
+ * replaced
+ *
+ * @param {Object} context is the object that contains the keys and
+ * values of variables.
+ */
+avl.extend('tmpl', function (s, context) {
+    s = '' + s;
+    for (var i in context) {
+        var reg = new RegExp('\{\s*' + i + '\s*\}');
+        s = s.replace(reg, context[i]);
+    }
+    return s;
+});
+
+
+/** Fills the string with `n' zeros at left
+ *
+ * @param {String} s is the string to be filled out
+ * @param {Number} n is the final size of the whole string
+ */
+avl.extend('zfill', function (s, n) {
+    s = '' + s;
+    while (s.length < n) {
+        s = '0' + s;
+    }
+    return s;
+});
