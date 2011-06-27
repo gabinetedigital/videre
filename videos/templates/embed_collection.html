@@ -1,0 +1,24 @@
+{% load static %}
+{% get_static_prefix as STATIC_URL %}
+<!DOCTYPE html>
+<html>
+  <head><title>Embed</title>
+    <style type="text/css">
+      .thumb {
+      background:#000;
+      width:128px;
+      height:72px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="collection"></div>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/l/jquery.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/avl.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/collection.js"></script>
+    <script type="text/javascript">
+      avl.init("{{ api }}");
+      avl.collection('#collection');
+    </script>
+  </body>
+</html>

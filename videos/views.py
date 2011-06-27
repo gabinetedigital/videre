@@ -63,3 +63,13 @@ def embed(request, vid):
         'height': request.GET.get('height', 270),
     }
     return render_to_response('embed.html', ctx)
+
+
+def embed_collection(request):
+    """ Returns an html page that renders a collection of videos """
+    api = request.build_absolute_uri(request.META['SCRIPT_NAME'] + '/api')
+    ctx = {
+        'api': api,
+        'height': request.GET.get('tags', ''),
+    }
+    return render_to_response('embed_collection.html', ctx)
