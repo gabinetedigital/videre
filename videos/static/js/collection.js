@@ -83,7 +83,8 @@ avl.extend('collection', function (e, o) {
         }
     };
 
-    $.getJSON(this.api_url + '/?callback=?', function (collection) {
+    var url = this.api_url + '/?callback=?';
+    $.getJSON(url, {q: o.q}, function (collection) {
         var opts = o || {};
         opts.items = collection;
         new Collection(e, opts);

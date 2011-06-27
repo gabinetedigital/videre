@@ -16,6 +16,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 from django.shortcuts import get_object_or_404, render_to_response
+from django.db.models import Q
 from django.core.urlresolvers import reverse
 from django.utils.simplejson import dumps
 from django.http import HttpResponse
@@ -40,12 +41,44 @@ def video(request, vid):
     return build_json(request, obj.as_dict())
 
 
-def collection(request, tags=None):
+def collection(request):
     """ Returns a list of videos, filtered by tag names """
     query = {}
+
+    # This query comes from the request and can contain any text
+    search = request.REQUEST.get('q', '')
+
+    # Let's be a bit adaptative. If the user of this API passes
+    # something prefixed by a # (%23 if encoded), it will be threated as
+    # a tag. Here we have the code that extracts it:
+    words = []
+    tags = []
+    for i in search.split(','):
+        if i.startswith('#'):
+            tags.append(i[1:])
+        else:
+            words.append(i)
+
+    # Now, let's search for the found tags
     if tags:
-        query.update({tags__name__in: tags.split(',')})
-    videos = [i.as_dict() for i in Video.objects.filter(**query)]
+        query.update({'tags__name__in': tags})
+
+    # And here we look for the words in all searchable fields. Currently
+    # just title and summary.
+    word_search = None
+    for word in words:
+        if word_search is None:
+            word_search = Q(title__icontains=word)
+        else:
+            word_search |= Q(title__icontains=word)
+        word_search |= Q(summary__icontains=word)
+
+    # Let's apply this search and build a json with it and we're done
+    if word_search is not None:
+        search = Video.objects.filter(word_search, **query)
+    else:
+        search = Video.objects.filter(**query)
+    videos = [i.as_dict() for i in search]
     return build_json(request, videos)
 
 
