@@ -1,0 +1,35 @@
+ul.collection {
+    padding:0;
+}
+
+ul.collection li {
+    list-style:none;
+    float:left;
+    margin-right:20px;
+    width:200px;
+    overflow:hidden;
+}
+
+ul.collection img {
+    background:#000;
+    width:200px;
+    height:100px;
+}
+
+ul.collection dl {
+    margin:0;
+    padding:0;
+}
+
+ul.collection dd {
+    margin:0;
+    padding:0;
+}
+
+ul.collection dd.date {
+    float:right;
+}
+
+ul.collection p {
+    margin:10px 0 0 0;
+}
