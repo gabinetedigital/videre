@@ -53,7 +53,13 @@ avl.extend('collection', function (e, o) {
 
         render_video: function (video) {
             var date;
-            var dateObj = new Date(video.event_date);
+
+            /* Let me say it again, I ***HATE*** IE :) */
+            var evt_date = video.event_date
+                .replace(/-/g, '/')
+                .replace('T', ' ');
+
+            var dateObj = new Date(evt_date);
             if (typeof this.opts.dateFormat === 'function') {
                 date = this.opts.dateFormat(dateObj);
             } else {
@@ -64,7 +70,9 @@ avl.extend('collection', function (e, o) {
                 date = year + '/' + month + '/' + dateObj.getDate();
             }
 
-            var hour = dateObj.getHours() + ':' + dateObj.getMinutes();
+            var hour =
+                avl.zfill(dateObj.getHours(), 2) + ':' +
+                avl.zfill(dateObj.getMinutes(), 2);
 
             var $li = $(avl.tmpl(thumbTemplate, {
                 'link': '#' + video.id,
