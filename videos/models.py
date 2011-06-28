@@ -40,7 +40,7 @@ class Video(models.Model):
     title = models.CharField(_(u'title'), max_length=200)
     creation_date = models.DateTimeField(
         _(u'creation date'), default=datetime.now)
-    event_date = models.DateTimeField(_(u'event date'))
+    event_date = models.DateTimeField(_(u'event date'), blank=True, null=True)
     summary = models.TextField(_(u'summary'),)
     author = models.CharField(_(u'author'), max_length=200)
     license_name = models.CharField(_(u'license name'), max_length=200)
