@@ -51,12 +51,12 @@ avl.extend('player', function (e, o) {
             }
 
             var $playerContainer = $('<div>').attr('id', uid);
+            $playerContainer.css({width: this.width, height: this.height});
 
             /* There's only one source, a flash one. So, we'll not setup
              * the video tag :( */
             if (this.sources.length === 1 && flv) {
                 $playerContainer.appendTo(this.$element);
-                $playerContainer.css({width: this.width, height: this.height});
             } else {
                 $video.attr({width: this.width, height: this.height});
                 $video.addClass('video-js');
