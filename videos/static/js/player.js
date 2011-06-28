@@ -53,9 +53,12 @@ avl.extend('player', function (e, o, disableAsync) {
             var $playerContainer = $('<div>').attr('id', uid);
             $playerContainer.css({width: this.width, height: this.height});
 
+            var ie9 = navigator.userAgent.indexOf("Trident/5") > -1;
+
             /* There's only one source, a flash one. So, we'll not setup
-             * the video tag :( */
-            if (this.sources.length === 1 && flv) {
+             * the video tag. Another condition is we have flash and
+             * it's IE9. */
+            if ((this.sources.length === 1 && flv) || (flv && ie9)) {
                 $playerContainer.appendTo(this.$element);
             } else {
                 $video.attr({width: this.width, height: this.height});
