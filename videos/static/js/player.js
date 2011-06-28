@@ -14,7 +14,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-avl.extend('player', function (e, o) {
+avl.extend('player', function (e, o, disableAsync) {
     function Player (element, opts) {
         opts = opts || {};
         this.sources = opts.sources;
@@ -107,8 +107,14 @@ avl.extend('player', function (e, o) {
         }
     };
 
-    $.getJSON(this.api_url + '/' + o.vid + '/?callback=?', function (video) {
-        o.sources = video.sources;
-        new Player(e, o);
+    /* We shall want to call this API with the video object already
+     * loaded */
+    if (disableAsync === true) {
+        return new Player(e, o);
+    }
+
+    /* Ok, let's proced with the async call */
+    $.getJSON(this.api_url + '/' + o.id + '/?callback=?', function (video) {
+        new Player(e, video);
     });
 });
