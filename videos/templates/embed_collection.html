@@ -3,18 +3,27 @@
 <!DOCTYPE html>
 <html>
   <head><title>Embed</title>
+    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/video-js.css">
     <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/avl.collection.css">
   </head>
   <body>
+    <div id="player"></div>
     <div id="collection"></div>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/l/flowplayer.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/l/video.js"></script>
     <script type="text/javascript" src="{{ STATIC_URL }}js/l/jquery.js"></script>
     <script type="text/javascript" src="{{ STATIC_URL }}js/avl.js"></script>
     <script type="text/javascript" src="{{ STATIC_URL }}js/collection.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/player.js"></script>
     <script type="text/javascript">
       avl.init("{{ api }}");
       avl.collection('#collection', {
           videoCallback: function (event, obj) {
-              alert(obj.id);
+              $('#player').html('');
+              obj.width = 480;
+              obj.height = 270;
+              avl.player('#player', obj, true);
+              return false;
           }
       });
     </script>
