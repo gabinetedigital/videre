@@ -53,12 +53,26 @@ avl.extend('player', function (e, o, disableAsync) {
             var $playerContainer = $('<div>').attr('id', uid);
             $playerContainer.css({width: this.width, height: this.height});
 
+            /* Let's the hammer play around
+             *
+             * There are some special conditions that we have to
+             * consider before using the video tag and the flash stuff.
+             *
+             * I know that these rules are quite basic, and that safari
+             * (and other mac stuff) accepts the video tag but not
+             * ogg. Here they are:
+             *
+             *  - (flv && sources.length === 1)
+             *  - (flv && ie9)
+             *  - (flv && !ogg)
+             */
+            var videoTag = !!document.createElement('video').canPlayType;
             var ie9 = navigator.userAgent.indexOf("Trident/5") > -1;
-
-            /* There's only one source, a flash one. So, we'll not setup
-             * the video tag. Another condition is we have flash and
-             * it's IE9. */
-            if ((this.sources.length === 1 && flv) || (flv && ie9)) {
+            var ogg = document.createElement("video")
+                .canPlayType('video/ogg; codecs="theora, vorbis"');
+            if ((this.sources.length === 1 && flv) ||
+                (flv && ie9) ||
+                (flv && !ogg)) {
                 $playerContainer.appendTo(this.$element);
             } else {
                 $video.attr({width: this.width, height: this.height});
