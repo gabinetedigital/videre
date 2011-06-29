@@ -68,8 +68,11 @@ avl.extend('player', function (e, o, disableAsync) {
              */
             var videoTag = !!document.createElement('video').canPlayType;
             var ie9 = navigator.userAgent.indexOf("Trident/5") > -1;
-            var ogg = document.createElement("video")
-                .canPlayType('video/ogg; codecs="theora, vorbis"');
+            var ogg = false;
+            if (videoTag) {
+                var v = document.createElement('video');
+                ogg = v.canPlayType('video/ogg; codecs="theora, vorbis"');
+            }
             if ((this.sources.length === 1 && flv) ||
                 (flv && ie9) ||
                 (flv && !ogg)) {
