@@ -52,27 +52,29 @@ avl.extend('collection', function (e, o) {
         },
 
         render_video: function (video) {
-            var date;
+            var date = '', hour = '', evt_date = '';
 
-            /* Let me say it again, I ***HATE*** IE :) */
-            var evt_date = video.event_date
-                .replace(/-/g, '/')
-                .replace('T', ' ');
+            /* Not a mandatory parameter */
+            if (video.event_date !== '' && video.event_date !== null) {
 
-            var dateObj = new Date(evt_date);
-            if (typeof this.opts.dateFormat === 'function') {
-                date = this.opts.dateFormat(dateObj);
-            } else {
-                var year = dateObj.getYear();
-                year = year < 1900 ? year + 1900 : year;
+                /* Let me say it again, I ***HATE*** IE :) */
+                evt_date = video.event_date.replace(/-/g, '/').replace('T', ' ');
 
-                var month = avl.zfill(dateObj.getMonth()+1, 2);
-                date = year + '/' + month + '/' + dateObj.getDate();
+                var dateObj = new Date(evt_date);
+                if (typeof this.opts.dateFormat === 'function') {
+                    date = this.opts.dateFormat(dateObj);
+                } else {
+                    var year = dateObj.getYear();
+                    year = year < 1900 ? year + 1900 : year;
+
+                    var month = avl.zfill(dateObj.getMonth()+1, 2);
+                    date = year + '/' + month + '/' + dateObj.getDate();
+                }
+
+                hour =
+                    avl.zfill(dateObj.getHours(), 2) + ':' +
+                    avl.zfill(dateObj.getMinutes(), 2);
             }
-
-            var hour =
-                avl.zfill(dateObj.getHours(), 2) + ':' +
-                avl.zfill(dateObj.getMinutes(), 2);
 
             var $li = $(avl.tmpl(thumbTemplate, {
                 'link': '#' + video.id,
