@@ -87,7 +87,7 @@ avl.extend('collection', function (e, o) {
 
             var context = this;
             $('a', $li).click(function (evt) {
-                context.opts.videoCallback(evt, video);
+                return context.videoCallback(evt, video);
             });
             return $li;
         }
