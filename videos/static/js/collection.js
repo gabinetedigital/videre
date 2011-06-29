@@ -33,6 +33,10 @@ avl.extend('collection', function (e, o) {
         this.videoCallback = typeof opts.videoCallback === 'function' ?
             opts.videoCallback : function (obj) { };
 
+        /* Getting the video link, if it's passed by the user of
+         * course */
+        this.link = opts.link != undefined ? opts.link : null;
+
         /* List of items to be shown */
         this.items = opts.items;
 
@@ -76,8 +80,9 @@ avl.extend('collection', function (e, o) {
                     avl.zfill(dateObj.getMinutes(), 2);
             }
 
+            var link = (this.link) ? this.link.replace(/\$id/, video.id) : '';
             var $li = $(avl.tmpl(thumbTemplate, {
-                'link': '#' + video.id,
+                'link': link,
                 'thumb_url': video.thumb_url,
                 'title': video.title,
                 'summary': video.summary,
