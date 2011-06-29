@@ -65,9 +65,11 @@ avl.extend('player', function (e, o, disableAsync) {
              *  - (flv && sources.length === 1)
              *  - (flv && ie9)
              *  - (flv && !ogg)
+             *  - (flv && chrome) // no metter how it says about chrome
              */
             var videoTag = !!document.createElement('video').canPlayType;
             var ie9 = navigator.userAgent.indexOf("Trident/5") > -1;
+            var chrome = navigator.appVersion.indexOf('Chrome') > -1;
             var ogg = false;
             if (videoTag) {
                 var v = document.createElement('video');
@@ -75,7 +77,8 @@ avl.extend('player', function (e, o, disableAsync) {
             }
             if ((this.sources.length === 1 && flv) ||
                 (flv && ie9) ||
-                (flv && !ogg)) {
+                (flv && !ogg) ||
+                (flv && chrome)) {
                 $playerContainer.appendTo(this.$element);
             } else {
                 $video.attr({width: this.width, height: this.height});
