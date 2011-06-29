@@ -23,7 +23,7 @@ avl.extend('collection', function (e, o) {
         '    <dd class="date">{date}</dd>' +
         '    <dd class="hour">{hour}</dd>' +
         '  </dl>' +
-        '  <p>{summary}</p>' +
+        '  <p>{title}</p>' +
         '</li>';
 
     function Collection(element, opts) {
