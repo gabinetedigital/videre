@@ -48,7 +48,8 @@ avl.extend('tmpl', function (s, context) {
     s = '' + s;
     for (var i in context) {
         var reg = new RegExp('\{\s*' + i + '\s*\}');
-        s = s.replace(reg, context[i]);
+        while (reg.test(s))
+            s = s.replace(reg, context[i]);
     }
     return s;
 });
