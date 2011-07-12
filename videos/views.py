@@ -88,7 +88,7 @@ def embed(request, vid):
     It's useful for embeding the video in other pages that you're not
     able to change the html code or add javascript. It also recognizes
     both `width' and `height' variables present in request. """
-    api = request.build_absolute_uri(request.META['SCRIPT_NAME'] + '/api')
+    api = request.build_absolute_uri(request.META['SCRIPT_NAME'] + '/')
     ctx = {
         'api': api,
         'vid': vid,
@@ -100,7 +100,7 @@ def embed(request, vid):
 
 def embed_collection(request):
     """ Returns an html page that renders a collection of videos """
-    api = request.build_absolute_uri(request.META['SCRIPT_NAME'] + '/api')
+    api = request.build_absolute_uri(request.META['SCRIPT_NAME'] + '/')
     ctx = {
         'api': api,
         'height': request.GET.get('tags', ''),
