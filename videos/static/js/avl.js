@@ -67,3 +67,20 @@ avl.extend('zfill', function (s, n) {
     }
     return s;
 });
+
+/** Concatenates URI paths stripping double slashes
+ */
+avl.extend('buildurl', function () {
+    var complete = '';
+    for (var i = 0; i < arguments.length; i++) {
+        var arg = String(arguments[i]);
+        while (arg[arg.length-1] === '/') {
+            arg = arg.substr(0, arg.length - 1);
+        }
+        complete += arg;
+        if (i < arguments.length - 1) {
+            complete += '/';
+        }
+    }
+    return complete;
+});

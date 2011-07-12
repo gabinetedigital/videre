@@ -137,7 +137,8 @@ avl.extend('player', function (e, o, disableAsync) {
     }
 
     /* Ok, let's proced with the async call */
-    $.getJSON(this.api_url + '/' + o.id + '/?callback=?', function (video) {
+    var url = avl.buildurl(this.api_url, o.id, '?callback=?');
+    $.getJSON(url, function (video) {
         /* Updating the video object with params passed in the `opts'
          * param. */
         for (var i in o) {
