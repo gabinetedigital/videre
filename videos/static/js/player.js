@@ -131,7 +131,7 @@ avl.extend('player', function (e, o, disableAsync) {
                 var cfg = {
                     clip: {
                         url: formats.flv,
-                        autoPlay: true
+                        autoPlay: false
                     }
                 };
 
