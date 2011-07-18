@@ -29,23 +29,57 @@ avl.extend('player', function (e, o, disableAsync) {
         this.player();
     }
 
+    var navigators = {
+        ie9: navigator.userAgent.indexOf('Trident/5') > -1,
+        firefox: navigator.userAgent.indexOf('firefox') > -1,
+        chrome: navigator.userAgent.indexOf('Chrome') > -1,
+        safari: navigator.userAgent.indexOf('Safari') > -1
+    };
+
+    var supportedFormats = (function () {
+        var result = {};
+        if (!!document.createElement('video').canPlayType) {
+            var v = document.createElement('video');
+            result.ogg = v.canPlayType('video/ogg; codecs="theora, vorbis"');
+            result.webm = v.canPlayType('video/webm; codecs="vp8, vorbis"');
+            result.mp4 = v.canPlayType('video/mp4; codecs="avc1.42E01E, mp4a.40.2"');
+        }
+        return result;
+    })();
+
     Player.prototype = {
         player: function () {
             var $video = $('<video>');
             var uid = 'player-' + (new Date()).getTime();
-            var flv = null;
-            var rtmp = false;
+            var formats = {
+                flv: null,
+                rtmp: false,
+                webm: null,
+                mp4: null,
+                ogv: null
+            };
+
             for (var i = 0; i < this.sources.length; i++) {
-                if (this.sources[i].content_type === 'video/x-flv') {
-                    flv = this.sources[i].url;
-                    if (this.sources[i].url.substr(0, 4) === 'rtmp') {
-                        rtmp = true;
+                var src = this.sources[i];
+                var ctype = src.content_type;
+
+                /* Let's recognize which format we're receiving */
+                if (ctype === 'video/x-flv') {
+                    formats.flv = src.url;
+                    if (src.url.substr(0, 4) === 'rtmp') {
+                        formats.rtmp = true;
                     }
+                } else if (ctype.indexOf('video/webm')) {
+                    formats.webm = src.url;
+                } else if (ctype.indexOf('video/theora')) {
+                    formats.ogv = src.url;
+                } else if (ctype.indexOf('video/mp4')) {
+                    formats.mp4 = src.url;
                 }
 
                 var attrs = {
-                    src: this.sources[i].url,
-                    type: this.sources[i].content_type
+                    src: src.url,
+                    type: ctype
                 };
                 $video.append($('<source>').attr(attrs));
             }
@@ -64,21 +98,15 @@ avl.extend('player', function (e, o, disableAsync) {
              *
              *  - (flv && sources.length === 1)
              *  - (flv && ie9)
-             *  - (flv && !ogg)
-             *  - (flv && chrome) // no metter how it says about chrome
+             *  - (flv && (!ogg && !webm && !mp4))
+             *  - (flv && chrome && !webm)
              */
-            var videoTag = !!document.createElement('video').canPlayType;
-            var ie9 = navigator.userAgent.indexOf("Trident/5") > -1;
-            var chrome = navigator.appVersion.indexOf('Chrome') > -1;
-            var ogg = false;
-            if (videoTag) {
-                var v = document.createElement('video');
-                ogg = v.canPlayType('video/ogg; codecs="theora, vorbis"');
-            }
-            if ((this.sources.length === 1 && flv) ||
-                (flv && ie9) ||
-                (flv && !ogg) ||
-                (flv && chrome)) {
+            if ((this.sources.length === 1 && formats.flv) ||
+                (formats.flv && navigators.ie9) ||
+                (formats.flv && (!supportedFormats.ogg &&
+                                 !supportedFormats.mp4 &&
+                                 !supportedFormats.webm)) ||
+                (formats.flv && navigators.chrome && !formats.webm)) {
                 $playerContainer.appendTo(this.$element);
             } else {
                 $video.attr({width: this.width, height: this.height});
@@ -89,19 +117,26 @@ avl.extend('player', function (e, o, disableAsync) {
 
             /* Setting up video js in the just added player. It will not
              * until we add it to the dom structure */
-            VideoJS.setup($('video', this.$element)[0]);
+            vjs = VideoJS.setup($('video', this.$element)[0]);
+
+            /* Hammering again. Video js is not working before
+             * pausing/playing it a first time. This weird bug only
+             * happens in chrome, but, once it does not screw up with
+             * any other browser, I didn't try to hide it. */
+            setTimeout(function () { vjs.play(); vjs.pause(); }, 300);
+            setTimeout(function () { $(vjs.bigPlayButton).show(); }, 350);
 
             /* We need to setup flash too */
-            if (flv != null) {
+            if (formats.flv) {
                 var cfg = {
                     clip: {
-                        url: flv,
+                        url: formats.flv,
                         autoPlay: true
                     }
                 };
 
                 /* We also need to support flash streaming */
-                if (rtmp) {
+                if (formats.rtmp) {
 
                     /* Handling requests in all styles, including akamai
                      * ones.
@@ -109,7 +144,7 @@ avl.extend('player', function (e, o, disableAsync) {
                      * Don't know why they just don't use another
                      * mimetype once they're not actually providing flv
                      * content in the first request... */
-                    var result = /^(.+)\/([^\/]+)$/.exec(flv);
+                    var result = /^(.+)\/([^\/]+)$/.exec(formats.flv);
                     var netConnectionUrl = result[1];
                     var clipUrl = result[0]
 
