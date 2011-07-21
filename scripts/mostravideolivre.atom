@@ -1,0 +1,254 @@
+<feed xmlns="http://www.w3.org/2005/Atom">
+<title>Mostra de Vídeos Lives</title>
+<id>http://videolivre.org/</id>
+<entry xmlns="http://www.w3.org/2005/Atom">
+  <author>
+    <name>Laisa Beatris</name>
+  </author>
+  <content src="http://videolivre.org.br/videos/3310-10.mp4" type="video/mp4" />
+  <id>urn:uuid:7d45bae8-b0d9-463f-832a-4c4702b9835b</id>
+  <link href="http://videolivre.org.br/videos/3310-10.mp4.png" rel="thumbnail" />
+  <summary>Áudio slideshow sobre a linha de ônibus mais longa da cidade de São Paulo, a 3310-10 Cidade Tiradentes / Terminal Amaral Gurgel.</summary>
+  <title>3310-10</title>
+  <updated>2010-07-14T23:00:00Z</updated>
+</entry>
+<entry xmlns="http://www.w3.org/2005/Atom">
+  <author>
+    <name>Lapis.Ufsc</name>
+  </author>
+  <content src="http://videolivre.org.br/videos/A%20Barragem.mp4" type="video/mp4" />
+  <id>urn:uuid:1650a1fb-fe0f-44bf-a33f-882e1a9f2694</id>
+  <link href="http://videolivre.org.br/videos/A%20Barragem.mp4.png" rel="thumbnail" />
+  <summary>Uma família vive uma vida simples e despreocupada em suas terras no interior onde trabalham. Mas a construção de uma barragem desapropria as suas terras e eles são obrigados a se mudar.</summary>
+  <title>A Barragem</title>
+  <updated>2010-07-15T11:41:00Z</updated>
+</entry>
+<entry xmlns="http://www.w3.org/2005/Atom">
+  <author>
+    <name>Misiones Software Libre</name>
+  </author>
+  <content src="http://videolivre.org.br/videos/Animan%20sus%20ideas.ogv" type="video/ogg" />
+  <id>urn:uuid:75b9224b-8be5-4b73-b700-371b35ad661c</id>
+  <link href="http://videolivre.org.br/videos/Animan%20sus%20ideas.ogv.png" rel="thumbnail" />
+  <summary>Animacion en Stopmotion hecha por alumnos de la Escuela Nº 217 del Km 15 cercana a Oberá (Misiones, Argentina). Escuela primaria de muy pocos alumnos, la mayoría de escasos recursos.</summary>
+  <title>Alumnos que animan sus ideas</title>
+  <updated>2010-07-09T15:01:00Z</updated>
+</entry>
+<entry xmlns="http://www.w3.org/2005/Atom">
+  <author>
+    <name>Desconhecido</name>
+  </author>
+  <content src="http://videolivre.org.br/videos/CIRCULANDO.mp4" type="video/mp4" />
+  <id>urn:uuid:50240433-8f89-41a0-a40f-ce4b94426e56</id>
+  <link href="http://videolivre.org.br/videos/CIRCULANDO.mp4.png" rel="thumbnail" />
+  <summary>Alusões ao eixo que gira a roda viva do dinheiro, em estímulos visuais a partir de formas circulares representadas por elementos da natureza. Música grupo Óctrombada.</summary>
+  <title>Circulando</title>
+  <updated>2010-07-19T08:17:00Z</updated>
+</entry>
+<entry xmlns="http://www.w3.org/2005/Atom">
+  <author>
+    <name>Desconhecido</name>
+  </author>
+  <content src="http://videolivre.org.br/videos/Creative%20Commons%20-%20Seja%20Criativo%20(Get%20Creative)%20Portuguese.mp4" type="video/mp4" />
+  <id>urn:uuid:4f2a2207-13c4-4d18-bcfb-717ad72c15f0</id>
+  <link href="http://videolivre.org.br/videos/Creative%20Commons%20-%20Seja%20Criativo%20(Get%20Creative)%20Portuguese.mp4.png" rel="thumbnail" />
+  <summary>Versão em português com explicação sobre a diferença de copyright para creative commons </summary>
+  <title>Seja Criativo (Get Creative)</title>
+  <updated>2010-07-19T11:26:00Z</updated>
+</entry>
+<entry xmlns="http://www.w3.org/2005/Atom">
+  <author>
+    <name>Desconhecido</name>
+  </author>
+  <content src="http://videolivre.org.br/videos/GUDE%20MORNIng.MP4" type="video/mp4" />
+  <id>urn:uuid:dc4c7cc7-5e77-42ae-bd2a-5d2a2cf64975</id>
+  <link href="http://videolivre.org.br/videos/GUDE%20MORNIng.MP4.png" rel="thumbnail" />
+  <title>Gude Morning</title>
+  <updated>2010-07-19T19:12:00Z</updated>
+</entry>
+<entry xmlns="http://www.w3.org/2005/Atom">
+  <author>
+    <name>Lapis.Ufsc</name>
+  </author>
+  <content src="http://videolivre.org.br/videos/Lusitania%20Hist%c3%b3rias%20de%20Guerra%20Contos%20do%20Mar.mp4" type="video/mp4" />
+  <id>urn:uuid:44bc95fa-cd28-480b-b45e-3c9b545498aa</id>
+  <link href="http://videolivre.org.br/videos/Lusitania%20Hist%c3%b3rias%20de%20Guerra%20Contos%20do%20Mar.mp4.png" rel="thumbnail" />
+  <summary>Baseado na história do afundamento do transatlântico Lusitânia, que ocorreu durante a primeira guerra mundial.</summary>
+  <title>Lusitânia-Histórias de Guerra Contos do Mar</title>
+  <updated>2010-07-15T11:44:00Z</updated>
+</entry>
+<entry xmlns="http://www.w3.org/2005/Atom">
+  <author>
+    <name>Desconhecido</name>
+  </author>
+  <content src="http://videolivre.org.br/videos/Mulheres%20de%20Magritte%20(2009)%20ENG.mp4" type="video/mp4" />
+  <id>urn:uuid:5d5b0c86-6dcc-47ed-a849-ded28ee136eb</id>
+  <link href="http://videolivre.org.br/videos/Mulheres%20de%20Magritte%20(2009)%20ENG.mp4.png" rel="thumbnail" />
+  <summary>O feminino tomado como base criativa do trabalho foi o retratado nas telas, esculturas e instalações de René Magritte, pintor surrealista nascido na Bélgica (1898-1967) que, através de suas obras, convida o observador a refletir sobre o sentido e a veracidade do que lhe é apresentado. </summary>
+  <title>Mulheres de Magritte</title>
+  <updated>2010-07-19T23:08:00Z</updated>
+</entry>
+<entry xmlns="http://www.w3.org/2005/Atom">
+  <author>
+    <name>Desconhecido</name>
+  </author>
+  <content src="http://videolivre.org.br/videos/Patent_Absurdity_HQ_768kbit.ogv" type="video/ogg" />
+  <id>urn:uuid:cfbb56fc-f066-4102-9c22-a5f1cc451c02</id>
+  <link href="http://videolivre.org.br/videos/Patent_Absurdity_HQ_768kbit.ogv.png" rel="thumbnail" />
+  <title>Patent_Absurdity</title>
+  <updated>2010-07-19T03:46:00Z</updated>
+</entry>
+<entry xmlns="http://www.w3.org/2005/Atom">
+  <author>
+    <name>Lapis.Ufsc</name>
+  </author>
+  <content src="http://videolivre.org.br/videos/Seca%20na%20Mesopot%c3%a2mia.mp4" type="video/mp4" />
+  <id>urn:uuid:dc282629-e16a-4e43-82fc-a3ec35ef4509</id>
+  <link href="http://videolivre.org.br/videos/Seca%20na%20Mesopot%c3%a2mia.mp4.png" rel="thumbnail" />
+  <summary>Na antiga Mesopotamia, uma grande seca ameaça a sobrevivencia de camponeses. Um sábio vem lhes trazer esperança.</summary>
+  <title>Seca na Mesopotâmia</title>
+  <updated>2010-07-15T11:34:00Z</updated>
+</entry>
+<entry xmlns="http://www.w3.org/2005/Atom">
+  <author>
+    <name>Desconhecido</name>
+  </author>
+  <content src="http://videolivre.org.br/videos/Take%20Away%20Show%20%23104%20_%20TOMI%20LEBRERO.mp4" type="video/mp4" />
+  <id>urn:uuid:a99246c2-ef8e-4f2a-9d73-79d497d2f6ac</id>
+  <link href="http://videolivre.org.br/videos/Take%20Away%20Show%20%23104%20_%20TOMI%20LEBRERO.mp4.png" rel="thumbnail" />
+  <summary>Projeto “A Take away show”, com o músico “Tomi Lebrero”, Argentina.  </summary>
+  <title>Take Away Show com TOMI LEBRERO</title>
+  <updated>2010-07-19T21:49:00Z</updated>
+</entry>
+<entry xmlns="http://www.w3.org/2005/Atom">
+  <author>
+    <name>Lívia Mª Moura</name>
+  </author>
+  <content src="http://videolivre.org.br/videos/Travessa%20dos%20Perd%c3%b5es.MP4" type="video/mp4" />
+  <id>urn:uuid:6471da9b-826b-4cdd-ba48-4469d6bfe0a1</id>
+  <link href="http://videolivre.org.br/videos/Travessa%20dos%20Perd%c3%b5es.MP4.png" rel="thumbnail" />
+  <summary>O vídeo produzido de maneira intrínseca com o áudio, as palavras proferidas vão dando inúmeros sentidos às imagens. As diversas faixas de áudio fazem que a mesma história se multiplique e se torne várias, tendo uma relação direta com as experiências do leitor.</summary>
+  <title>Travessa dos perdões</title>
+  <updated>2010-07-09T16:10:00Z</updated>
+</entry>
+<entry xmlns="http://www.w3.org/2005/Atom">
+  <author>
+    <name>Desconhecido</name>
+  </author>
+  <content src="http://videolivre.org.br/videos/Trilogia%20%22O%20toque%20do%20tambor%22%20video%201.MP4" type="video/mp4" />
+  <id>urn:uuid:9b0e3c6c-67b7-4055-8d0d-9e3130d6e0a3</id>
+  <link href="http://videolivre.org.br/videos/Trilogia%20%22O%20toque%20do%20tambor%22%20video%201.MP4.png" rel="thumbnail" />
+  <summary>Pelo contexto proporcionado pelas obras de Geraldo Anhaia Mello*, tomamos seu conceito como referência para os Micrometragens de Outono do Mutirão da Gambiarra.</summary>
+  <title>O Toque do Tambor (parte 1/3)</title>
+  <updated>2010-07-19T15:52:00Z</updated>
+</entry>
+<entry xmlns="http://www.w3.org/2005/Atom">
+  <author>
+    <name>Desconhecido</name>
+  </author>
+  <content src="http://videolivre.org.br/videos/Trilogia%20%22O%20toque%20do%20tambor%22%20video%202.MP4" type="video/mp4" />
+  <id>urn:uuid:66efe690-7d26-4125-b2a7-9077db7c4428</id>
+  <link href="http://videolivre.org.br/videos/Trilogia%20%22O%20toque%20do%20tambor%22%20video%202.MP4.png" rel="thumbnail" />
+  <summary>Pelo contexto proporcionado pelas obras de Geraldo Anhaia Mello*, tomamos seu conceito como referência para os Micrometragens de Outono do Mutirão da Gambiarra.</summary>
+  <title>O Toque do Tambor (parte 2/3)</title>
+  <updated>2010-07-19T02:26:00Z</updated>
+</entry>
+<entry xmlns="http://www.w3.org/2005/Atom">
+  <author>
+    <name>Desconhecido</name>
+  </author>
+  <content src="http://videolivre.org.br/videos/Trilogia%20%22O%20toque%20do%20tambor%22%20video%203.MP4" type="video/mp4" />
+  <id>urn:uuid:baa6654e-50e0-4d56-9b83-187b3f2f0b8b</id>
+  <link href="http://videolivre.org.br/videos/Trilogia%20%22O%20toque%20do%20tambor%22%20video%203.MP4.png" rel="thumbnail" />
+  <summary>Pelo contexto proporcionado pelas obras de Geraldo Anhaia Mello*, tomamos seu conceito como referência para os Micrometragens de Outono do Mutirão da Gambiarra.</summary>
+  <title>O Toque do Tambor (parte 3/3)</title>
+  <updated>2010-07-19T11:57:00Z</updated>
+</entry>
+<entry xmlns="http://www.w3.org/2005/Atom">
+  <author>
+    <name>Desconhecido</name>
+  </author>
+  <content src="http://videolivre.org.br/videos/Yo%20La%20tengo%20-%20A%20Take%20Away%20Show%20-%20Part%201.MP4" type="video/mp4" />
+  <id>urn:uuid:c8839790-1b68-449b-a3a6-94d308d27390</id>
+  <link href="http://videolivre.org.br/videos/Yo%20La%20tengo%20-%20A%20Take%20Away%20Show%20-%20Part%201.MP4.png" rel="thumbnail" />
+  <summary>Projeto “A Take away show”, com a banda “Yo La Tengo”, Argentina.  </summary>
+  <title>Yo La tengo - A Take Away Show - Part 1</title>
+  <updated>2010-07-19T01:54:00Z</updated>
+</entry>
+<entry xmlns="http://www.w3.org/2005/Atom">
+  <author>
+    <name>Everson Antunes</name>
+  </author>
+  <content src="http://videolivre.org.br/videos/a-felicidade-bate.mp4" type="video/mp4" />
+  <id>urn:uuid:d73a50d4-c41b-42c4-b70a-37f28b8799c9</id>
+  <link href="http://videolivre.org.br/videos/a-felicidade-bate.mp4.png" rel="thumbnail" />
+  <summary>A Felicidade Bate a Sua Porta é um programa de TV que entra na casa das pessoas lhes oferecendo a felicidade a partir de prêmios caros. Até que eles entram nessa casa...</summary>
+  <title>A Felicidade Bate a Sua Porta</title>
+  <updated>2010-07-10T12:38:00Z</updated>
+</entry>
+<entry xmlns="http://www.w3.org/2005/Atom">
+  <author>
+    <name>Claudio Manoel Duarte</name>
+  </author>
+  <content src="http://videolivre.org.br/videos/cuceta.mp4" type="video/mp4" />
+  <id>urn:uuid:27ca346f-8582-4b65-b942-3d0476ca65dd</id>
+  <link href="http://videolivre.org.br/videos/cuceta.mp4.png" rel="thumbnail" />
+  <summary>O Imaginário é Tv apresenta CUCETA - A Cultura Queer de Solange Tô Aberta</summary>
+  <title>CUCETA - A Cultura Queer de Solange Tô Aberta</title>
+  <updated>2010-07-10T22:16:00Z</updated>
+</entry>
+<entry xmlns="http://www.w3.org/2005/Atom">
+  <author>
+    <name>Sávio Farias</name>
+  </author>
+  <content src="http://videolivre.org.br/videos/desformeando.MP4" type="video/mp4" />
+  <id>urn:uuid:25a94908-ef18-450d-b1ce-f3a6c31aaed9</id>
+  <link href="http://videolivre.org.br/videos/desformeando.MP4.png" rel="thumbnail" />
+  <summary>Desformeando foi realizado em 2009, através do Núcleo de Estudos e Pesquisas sobre o Corpo Cênico - NEPCênico da Universidade Federal da Paraíba - UFPB. Com o intuito de experimentar o fazer videodança, mesclando as possiblidades audiovisuais com poesia e dança, Sávio Farias assina a direção, a fotografia e o texto, tendo Ali Cagliani como intérprete-criadora.</summary>
+  <title>Desformeando</title>
+  <updated>2010-07-11T14:09:00Z</updated>
+</entry>
+<entry xmlns="http://www.w3.org/2005/Atom">
+  <author>
+    <name>matyeu</name>
+  </author>
+  <content src="http://videolivre.org.br/videos/outro%20olhar%20BRASILIA.MP4" type="video/mp4" />
+  <id>urn:uuid:6759bdb8-10f6-4dc2-afd5-55c66e425318</id>
+  <link href="http://videolivre.org.br/videos/outro%20olhar%20BRASILIA.MP4.png" rel="thumbnail" />
+  <summary>Um olhar diferente sobre a cidade de Brasília, DF. Um sem teto, fala sobre a corrupção na cidade de Brasília enquanto é exibido imagens da cidades.</summary>
+  <title>outro olhar BRASILIA</title>
+  <updated>2010-07-15T17:50:00Z</updated>
+</entry>
+<entry xmlns="http://www.w3.org/2005/Atom">
+  <author>
+    <name>Desconhecido</name>
+  </author>
+  <content src="http://videolivre.org.br/videos/quinto%20c.MP4" type="video/mp4" />
+  <id>urn:uuid:e01a1c41-97f8-469c-a23c-b6869af37ef9</id>
+  <link href="http://videolivre.org.br/videos/quinto%20c.MP4.png" rel="thumbnail" />
+  <title>Quinto Ano C</title>
+  <updated>2010-07-19T10:12:00Z</updated>
+</entry>
+<entry xmlns="http://www.w3.org/2005/Atom">
+  <author>
+    <name>Diego Mendonça</name>
+  </author>
+  <content src="http://videolivre.org.br/videos/vida-seca.mp4" type="video/mp4" />
+  <id>urn:uuid:2f8e982c-58ed-4ccd-b583-7ac5e9e6dd80</id>
+  <link href="http://videolivre.org.br/videos/vida-seca.mp4.png" rel="thumbnail" />
+  <summary>Documentário musical sobre o grupo goianiense Vida Seca, que toca percussão com instrumentos musicais feitos de lixo, e as oficinas que desenvolvem, misturando músicalidade e meio ambiente.</summary>
+  <title>Vida Seca - Som de Sucata</title>
+  <updated>2010-07-08T09:29:00Z</updated>
+</entry>
+<entry xmlns="http://www.w3.org/2005/Atom">
+  <author>
+    <name>Desconhecido</name>
+  </author>
+  <content src="http://videolivre.org.br/videos/xondaro.mp4" type="video/mp4" />
+  <id>urn:uuid:d28232c4-fb98-4d96-803a-dd01fed00a64</id>
+  <link href="http://videolivre.org.br/videos/xondaro.mp4.png" rel="thumbnail" />
+  <summary>Minidocumentário apresentando a figura de Verá Popyguá, cerca de 80 anos, um dos últimos Xondaros (guardião espiritual e físico de aldeias Guarani).</summary>
+  <title>Xondaro</title>
+  <updated>2010-07-19T16:58:00Z</updated>
+</entry>
+</feed>
