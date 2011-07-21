@@ -17,7 +17,7 @@ MANAGERS = ADMINS
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': PROJECT_DIR('database.db'),
+        'NAME': PROJECT_DIR('data', 'db'),
         'USER': '',
         'PASSWORD': '',
         'HOST': '',
@@ -150,7 +150,7 @@ LOGGING = {
     }
 }
 
-# Arquivo para ambiente de testes (desenvolvimento)
+# Loading local settings file, useful in development mode
 local_settings = PROJECT_DIR('local_settings.py')
 if os.path.isfile(local_settings) and DEBUG:
     execfile(local_settings)
