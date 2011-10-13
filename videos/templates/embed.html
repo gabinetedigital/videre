@@ -2,7 +2,10 @@
 {% get_static_prefix as STATIC_URL %}
 <!DOCTYPE html>
 <html>
-  <head><title>Embed</title></head>
+  <head>
+    <title>Embed</title>
+    <style type="text/css">*{margin:0;padding:0;}</style>
+  </head>
   <body>
     <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/video-js.css">
     <div id="player"></div>
